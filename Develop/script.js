@@ -1,15 +1,19 @@
-// var tasks = [];
-// // create a "clock" to track time for past, present and future appointments
-// // debugger;
+
+var tasks = [];
+
 var time = document.getElementsByClassName(".time");
+var hourlyTasks = document.getElementById("9");
 
-console.log(time);
+// console.log(time);
 
+setInterval(dateTimeDisplay, 60000);
+    
 // current time to display in jumbotron
 var dateTimeDisplay = function(){
     var currentDay = document.getElementById("currentDay");
     currentDay.textContent = moment().format("dddd, MMMM Do");
     // console.log(currentDay);
+    
     // add background color to hours depending on past, present and future
         var now = moment().hour();
         // console.log(now);
@@ -36,25 +40,33 @@ var dateTimeDisplay = function(){
                 // console.log(true);
                 $(this).addClass("present")
             }
-        });  
-        
+        });        
 };
-setInterval(dateTimeDisplay, 60000);
-        console.log("tick");
-
-
-// createTasks function
 
 // saveTasks function
+var saveTasks = function() {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+};
 
 // loadTasks function
+var loadTasks = function() {
+    tasks = JSON.parse(localStorage.getItem("tasks"));
+}
 
-// editTasks function
+$(".saveBtn").on("click", function(){
+    console.log("click");
+    $().each(function(){
+        tasks.push({
+            text:$(this)
+                .find("textarea")
+                .val()
+                .trim(),    
+    });
+    console.log(tasks);
+        saveTasks(tasks);
+    });
+
+});
 
 dateTimeDisplay();
-// loadTasks ();
-setInterval(function() {
-    $("").each(function() {
-      dateTimeDisplay($(this));
-    });
-  }, (1000 * 60));
+loadTasks();

@@ -69,13 +69,16 @@ textarea{
 }
 
 .saveBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-style: none;
   border-left: 3px solid #00000042;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
   background-color: #06AED5;
   color: white;
-  height: 95%;
+  height: 100%;
   width: 100%;
 }
 
