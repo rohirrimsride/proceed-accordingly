@@ -55,7 +55,7 @@ var loadTasks = function() {
 
 $(".saveBtn").on("click", function(){
     console.log("click");
-    $().each(function(){
+    $(hourlyTasks).each(function(){
         tasks.push({
             text:$(this)
                 .find("textarea")
